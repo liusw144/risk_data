@@ -7,14 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author : split
- * @version : 1.0
- * @Description :
- * @Copyright : Sinaif Software Co.,Ltd.Rights Reserved
- * @Company : 海南新浪爱问普惠科技有限公司
- * @CreateDate : 2018年7月24日 下午2:07:03
- */
 @Document(collection = "userRiskDataMongoBean")
 @Data
 public class UserRiskDataMongoBean implements Serializable {

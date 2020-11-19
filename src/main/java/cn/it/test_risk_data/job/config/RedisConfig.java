@@ -14,10 +14,6 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/**
- * @author roger
- * reids 相关bean的配置
- */
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
