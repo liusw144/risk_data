@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -18,7 +19,7 @@ public class RiskDataFactoryService implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
 
-    private Map<String, RiskDataService> serviceMap;
+    private ConcurrentHashMap<String, RiskDataService> serviceMap;
 
     private ReentrantReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
@@ -35,7 +36,7 @@ public class RiskDataFactoryService implements ApplicationContextAware {
                 readWriteLock.writeLock().lock();
                 try {
                     if (serviceMap == null) {
-                        serviceMap = new HashMap<>(100);
+                        serviceMap = new ConcurrentHashMap(100);
                         Map<String, RiskDataService> maps =
                                 this.applicationContext.getBeansOfType(RiskDataService.class);
                         maps.forEach((name, service) -> {
