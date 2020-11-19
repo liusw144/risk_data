@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinaif.king.dao.data.UserRiskDataResultBeanMapper">
+    <resultMap id="BaseResultMap" type="com.sinaif.king.model.finance.data.UserRiskDataResultBean">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="terminal_id" jdbcType="VARCHAR" property="terminalId"/>
+        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
+        <result column="channel_name" jdbcType="VARCHAR" property="channelName"/>
+        <result column="data_type" jdbcType="VARCHAR" property="dataType"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="call_info" jdbcType="VARCHAR" property="callInfo"/>
+        <result column="pricing_strategy" jdbcType="INTEGER" property="pricingStrategy"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, terminal_id, user_id, channel_name, data_type,status,
+    call_info, pricing_strategy, remark, update_time, create_time
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_risk_data_result
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_risk_data_result
+        where status=#{status}
+        and terminal_id=#{terminalId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_user_risk_data_result
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.sinaif.king.model.finance.data.UserRiskDataResultBean">
+    insert into t_user_risk_data_result (id, terminal_id, user_id, 
+      channel_name, data_type,
+      status, call_info,
+      pricing_strategy, remark, update_time, 
+      create_time)
+    values (#{id,jdbcType=VARCHAR}, #{terminalId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{channelName,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},
+       #{callInfo,jdbcType=VARCHAR},
+      #{pricingStrategy,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+    <insert id="insertSelective" parameterType="com.sinaif.king.model.finance.data.UserRiskDataResultBean">
+        insert into t_user_risk_data_result
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="terminalId != null">
+                terminal_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="channelName != null">
+                channel_name,
+            </if>
+            <if test="dataType != null">
+                data_type,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="callInfo != null">
+                call_info,
+            </if>
+            <if test="pricingStrategy != null">
+                pricing_strategy,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="terminalId != null">
+                #{terminalId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelName != null">
+                #{channelName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="callInfo != null">
+                #{callInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="pricingStrategy != null">
+                #{pricingStrategy,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.sinaif.king.model.finance.data.UserRiskDataResultBean">
+        update t_user_risk_data_result
+        <set>
+            <if test="terminalId != null">
+                terminal_id = #{terminalId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="channelName != null">
+                channel_name = #{channelName,jdbcType=VARCHAR},
+            </if>
+            <if test="dataType != null">
+                data_type = #{dataType,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="callInfo != null">
+                call_info = #{callInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="pricingStrategy != null">
+                pricing_strategy = #{pricingStrategy,jdbcType=INTEGER},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.sinaif.king.model.finance.data.UserRiskDataResultBean">
+    update t_user_risk_data_result
+    set terminal_id = #{terminalId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      call_info = #{callInfo,jdbcType=VARCHAR},
+      pricing_strategy = #{pricingStrategy,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
